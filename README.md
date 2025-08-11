@@ -49,7 +49,16 @@
 
 ### 📊 Test Results  
 - HDMI Pass-through 영상 출력 정상 동작 확인  
-- Frame Buffer 및 VDMA 연속 전송 테스트 성공  
+- Frame Buffer 및 VDMA 연속 전송 테스트 성공
+
+  <img width="1402" height="763" alt="image" src="https://github.com/user-attachments/assets/0096c53a-215f-4f5d-806a-c9f269b67289" />
+
+
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/8392cee2-bbde-4c68-8e30-cdb408a01bf9" />
+
+
+https://github.com/user-attachments/assets/e5661d00-41c6-4707-af24-b670d572686c
+
 
 ---
 
