@@ -50,3 +50,8 @@
 ### 📊 Test Results  
 - HDMI Pass-through 영상 출력 정상 동작 확인  
 - Frame Buffer 및 VDMA 연속 전송 테스트 성공  
+
+---
+
+### 🔗 Reference  
+- Digilent Arty Z7 HDMI In Demo: [https://digilent.com/reference/learn/programmable-logic/tutorials/arty-z7-hdmi-in-demo](https://digilent.com/reference/learn/programmable-logic/tutorials/arty-z7-hdmi-in-demo)
