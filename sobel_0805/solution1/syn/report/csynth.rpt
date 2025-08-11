@@ -1,0 +1,142 @@
+
+
+================================================================
+== Synthesis Summary Report of 'sobel_filter'
+================================================================
++ General Information: 
+    * Date:           Sat Aug  9 01:32:05 2025
+    * Version:        2023.1 (Build 3854077 on May  4 2023)
+    * Project:        sobel_0805
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------+------+------+---------+--------+----------+---------+------+----------+--------+---------+-----------+-----------+-----+
+    |       Modules      | Issue|      | Latency | Latency| Iteration|         | Trip |          |        |         |           |           |     |
+    |       & Loops      | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined|  BRAM  |   DSP   |     FF    |    LUT    | URAM|
+    +--------------------+------+------+---------+--------+----------+---------+------+----------+--------+---------+-----------+-----------+-----+
+    |+ sobel_filter      |     -|  0.24|        -|       -|         -|        -|     -|        no|  3 (1%)|  1 (~0%)|  1113 (1%)|  1413 (2%)|    -|
+    | o VITIS_LOOP_74_1  |    II|  7.30|        -|       -|         9|        2|     -|       yes|       -|        -|          -|          -|    -|
+    |  + sobel_core      |     -|  1.32|        2|  20.000|         -|        1|     -|       yes|       -|        -|  100 (~0%)|  235 (~0%)|    -|
+    +--------------------+------+------+---------+--------+----------+---------+------+----------+--------+---------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AXIS
++-----------+-----------+---------------+-------+-------+-----+-------+-------+--------+-------+-------+--------+
+| Interface | Direction | Register Mode | TDATA | TDEST | TID | TKEEP | TLAST | TREADY | TSTRB | TUSER | TVALID |
++-----------+-----------+---------------+-------+-------+-----+-------+-------+--------+-------+-------+--------+
+| input_r   | in        | both          | 24    | 1     | 1   | 3     | 1     | 1      | 3     | 1     | 1      |
+| output_r  | out       | both          | 24    | 1     | 1   | 3     | 1     | 1      | 3     | 1     | 1      |
++-----------+-----------+---------------+-------+-------+-----+-------+-------+--------+-------+-------+--------+
+
+* TOP LEVEL CONTROL
++-----------+--------------+----------+
+| Interface | Type         | Ports    |
++-----------+--------------+----------+
+| ap_clk    | clock        | ap_clk   |
+| ap_rst_n  | reset        | ap_rst_n |
+| ap_ctrl   | ap_ctrl_none |          |
++-----------+--------------+----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+---------------------------------------------+
+| Argument | Direction | Datatype                                    |
++----------+-----------+---------------------------------------------+
+| input    | in        | stream<hls::axis<ap_uint<24>, 1, 1, 1>, 0>& |
+| output   | out       | stream<hls::axis<ap_uint<24>, 1, 1, 1>, 0>& |
++----------+-----------+---------------------------------------------+
+
+* SW-to-HW Mapping
++----------+--------------+-----------+
+| Argument | HW Interface | HW Type   |
++----------+--------------+-----------+
+| input    | input_r      | interface |
+| output   | output_r     | interface |
++----------+--------------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++------------------------------------+-----+--------+------------+-----+--------+---------+
+| Name                               | DSP | Pragma | Variable   | Op  | Impl   | Latency |
++------------------------------------+-----+--------+------------+-----+--------+---------+
+| + sobel_filter                     | 1   |        |            |     |        |         |
+|   mac_muladd_8ns_5ns_9ns_13_4_1_U7 | 1   |        | mul_ln10   | mul | dsp48  | 3       |
+|   add_ln10_fu_722_p2               | -   |        | add_ln10   | add | fabric | 0       |
+|   add_ln10_2_fu_590_p2             | -   |        | add_ln10_2 | add | fabric | 0       |
+|   mac_muladd_8ns_5ns_9ns_13_4_1_U7 | 1   |        | add_ln10_3 | add | dsp48  | 3       |
+|   add_ln148_fu_753_p2              | -   |        | add_ln148  | add | fabric | 0       |
+|   add_ln145_fu_673_p2              | -   |        | add_ln145  | add | fabric | 0       |
+|   add_ln146_fu_503_p2              | -   |        | add_ln146  | add | fabric | 0       |
+|  + sobel_core                      | 0   |        |            |     |        |         |
+|    gx_l_fu_90_p2                   | -   |        | gx_l       | sub | fabric | 0       |
+|    sub_ln23_fu_108_p2              | -   |        | sub_ln23   | sub | fabric | 0       |
+|    gx_r_fu_138_p2                  | -   |        | gx_r       | sub | fabric | 0       |
+|    sub_ln27_fu_148_p2              | -   |        | sub_ln27   | sub | fabric | 0       |
+|    add_ln30_fu_158_p2              | -   |        | add_ln30   | add | fabric | 0       |
+|    gx_fu_168_p2                    | -   |        | gx         | add | fabric | 0       |
+|    gy_r_fu_174_p2                  | -   |        | gy_r       | add | fabric | 0       |
+|    gy_fu_218_p2                    | -   |        | gy         | add | fabric | 0       |
+|    ax_fu_224_p2                    | -   |        | ax         | sub | fabric | 0       |
+|    ay_fu_243_p2                    | -   |        | ay         | sub | fabric | 0       |
+|    mag_fu_273_p2                   | -   |        | mag        | add | fabric | 0       |
+|    add_ln40_fu_289_p2              | -   |        | add_ln40   | add | fabric | 0       |
++------------------------------------+-----+--------+------------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++----------------+------+------+--------+----------+---------+------+---------+
+| Name           | BRAM | URAM | Pragma | Variable | Storage | Impl | Latency |
++----------------+------+------+--------+----------+---------+------+---------+
+| + sobel_filter | 3    | 0    |        |          |         |      |         |
+|   line1_U      | 1    | -    | pragma | line1    | ram_1p  | bram | 1       |
+|   line2_U      | 1    | -    | pragma | line2    | ram_1p  | bram | 1       |
+|   line0_U      | 1    | -    | pragma | line0    | ram_1p  | bram | 1       |
++----------------+------+------+--------+----------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Ignored Pragmas
++------------+-----------------+------------------------------------------------+--------------------------------------------------------------+
+| Type       | Options         | Location                                       | Messages                                                     |
++------------+-----------------+------------------------------------------------+--------------------------------------------------------------+
+| bind_op    | op=mul impl=dsp | sobel_0805/sobel_filter.cpp:49 in sobel_filter | missing argument for 'variable'                              |
+| allocation | instances=mul   | sobel_0805/sobel_filter.cpp:50 in sobel_filter | unexpected pragma argument 'mul', expects function/operation |
++------------+-----------------+------------------------------------------------+--------------------------------------------------------------+
+
+* Valid Pragma Syntax
++--------------+--------------------------------------+--------------------------------------------------------+
+| Type         | Options                              | Location                                               |
++--------------+--------------------------------------+--------------------------------------------------------+
+| inline       | off                                  | sobel_0805/sobel_filter.cpp:18 in sobel_core           |
+| pipeline     | II=1                                 | sobel_0805/sobel_filter.cpp:19 in sobel_core           |
+| latency      | min=2 max=2                          | sobel_0805/sobel_filter.cpp:20 in sobel_core           |
+| interface    | axis port=input                      | sobel_0805/sobel_filter.cpp:44 in sobel_filter, input  |
+| interface    | axis port=output                     | sobel_0805/sobel_filter.cpp:45 in sobel_filter, output |
+| interface    | ap_ctrl_none port=return             | sobel_0805/sobel_filter.cpp:46 in sobel_filter, return |
+| bind_storage | variable=line0 type=ram_1p impl=bram | sobel_0805/sobel_filter.cpp:56 in sobel_filter, line0  |
+| bind_storage | variable=line1 type=ram_1p impl=bram | sobel_0805/sobel_filter.cpp:57 in sobel_filter, line1  |
+| bind_storage | variable=line2 type=ram_1p impl=bram | sobel_0805/sobel_filter.cpp:58 in sobel_filter, line2  |
+| dependence   | variable=line0 inter false           | sobel_0805/sobel_filter.cpp:59 in sobel_filter, line0  |
+| dependence   | variable=line1 inter false           | sobel_0805/sobel_filter.cpp:60 in sobel_filter, line1  |
+| dependence   | variable=line2 inter false           | sobel_0805/sobel_filter.cpp:61 in sobel_filter, line2  |
+| pipeline     | II=1                                 | sobel_0805/sobel_filter.cpp:75 in sobel_filter         |
++--------------+--------------------------------------+--------------------------------------------------------+
+
+

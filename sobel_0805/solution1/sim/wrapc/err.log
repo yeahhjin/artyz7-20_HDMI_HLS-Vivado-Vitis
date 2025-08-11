@@ -1,0 +1,13 @@
+apatb_sobel_filter_util.cpp: In function 'bool fpga_fifo_exist_1(hls::stream<__cosim_T_1__>*)':
+apatb_sobel_filter_util.cpp:17:16: error: 'class hls::stream<__cosim_T_1__>' has no member named 'exist'
+   return fifo->exist();
+                ^~~~~
+apatb_sobel_filter_util.cpp: In function 'bool fpga_fifo_exist_4(hls::stream<__cosim_T_4__>*)':
+apatb_sobel_filter_util.cpp:30:16: error: 'class hls::stream<__cosim_T_4__>' has no member named 'exist'
+   return fifo->exist();
+                ^~~~~
+apatb_sobel_filter_util.cpp: In function 'bool fpga_fifo_exist_12(hls::stream<__cosim_T_12__>*)':
+apatb_sobel_filter_util.cpp:43:16: error: 'class hls::stream<__cosim_T_12__>' has no member named 'exist'
+   return fifo->exist();
+                ^~~~~
+make: *** [obj/apatb_sobel_filter_util.o] Error 1
